@@ -29,17 +29,18 @@ h2 {
 	display: flex;
 	background-color: var(--darker-bg);
 	min-height: 100vh;
-	justify-content: center;
 	flex-direction: column;
 	align-items: center;
+	gap: 1rem;
 }
 
 .calendar {
 	flex: 1;
-	max-width: 600px;
+	width: 550px;
 	margin: 1rem;
 	color: var(--white-text);
 	text-align: center;
+	max-height: fit-content;
 }
 
 .calendar-header {
@@ -94,6 +95,7 @@ h2 {
 }
 
 .yearly-view {
+	flex: 1;
 	display: flex;
 	gap: 4px;
 	overflow-x: auto;
@@ -131,11 +133,12 @@ h2 {
 	flex-direction: column;
 	align-items: flex-start;
 	background-color: var(--darker-bg);
+	color: var(--white-text);
 	overflow-x: auto;
 	border: 1px solid var(--components-stroke-light);
 	border-radius: 4px;
 	padding: 0.7em 0.5rem;
-	margin-top: 2rem;
+	max-width: 95%;
 }
 
 .month-header {
@@ -191,9 +194,6 @@ button.danger {
 	color: var(--button-danger-text);
 }
 
-button.icon {
-}
-
 @media (min-width: 568px) {
 	button.danger:hover {
 		background-color: var(--button-danger-active-bg);
@@ -240,6 +240,10 @@ button.icon {
 	.yearly-day {
 		width: 12px;
 		height: 12px;
+	}
+
+	.yearly-day:hover {
+		border: 1px solid var(--components-stroke-dark);
 	}
 
 	.tooltip {
