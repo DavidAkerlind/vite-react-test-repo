@@ -214,6 +214,10 @@ button.icon {
 	background-color: transparent;
 }
 
+button.icon:hover {
+	opacity: 0.8;
+}
+
 @media (min-width: 568px) {
 	button.danger:hover {
 		background-color: var(--button-danger-active-bg);
