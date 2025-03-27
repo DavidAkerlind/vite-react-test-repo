@@ -30,25 +30,31 @@ const YearlyView = ({ selectedDays }) => {
 		'Dec',
 	];
 
-	// Funktion för att generera årets veckor
 	const generateYearWeeks = () => {
-		const yearWeeks = Array.from({ length: 53 }, () => []); // Max 53 veckor
+		const yearWeeks = [];
 
+		// Loop through each month
 		for (let month = 0; month < 12; month++) {
 			const daysInMonth = new Date(2025, month + 1, 0).getDate();
 
+			// Loop through each day in the month
 			for (let day = 1; day <= daysInMonth; day++) {
 				const date = new Date(2025, month, day);
-				const weekNumber = Math.floor(
+
+				// Calculate the week number using the ISO week system
+				const weekNumber = Math.ceil(
 					(date - new Date(2025, 0, 1)) / (7 * 24 * 60 * 60 * 1000)
-				); // Beräkna veckonummer
+				);
 
 				if (!yearWeeks[weekNumber]) {
 					yearWeeks[weekNumber] = [];
 				}
+
+				// Add the current day to the corresponding week
 				yearWeeks[weekNumber].push({ month, day });
 			}
 		}
+
 		return yearWeeks;
 	};
 

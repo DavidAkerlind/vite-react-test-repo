@@ -7,7 +7,10 @@
 	--components-stroke-light: #3d444d;
 	--components-green-bg: #2ea043;
 	--components-green-stroke: #196c2e;
+	--components-bg-light: #212830;
 	--white-text: #f0f6fc;
+	--button-danger-text: #fa5e55;
+	--button-danger-active-bg: #d03533;
 }
 
 * {
@@ -27,6 +30,7 @@ h2 {
 	background-color: var(--darker-bg);
 	min-height: 100vh;
 	justify-content: center;
+	flex-direction: column;
 }
 
 .calendar {
@@ -101,42 +105,6 @@ h2 {
 	background: var(--components-green-bg);
 	color: var(--white-text);
 }
-/*
-.yearly-view {
-	flex: 7;
-	height: 170px;
-	display: grid;
-	border: 1px solid var(--components-stroke-light);
-	border-radius: 4px;
-	padding: 1rem 0.5rem;
-	margin-top: 2rem;
-	grid-template-columns: repeat(46, 10px);
-	grid-template-rows: repeat(7, 10px); /* Endast 7 rader
-	overflow-x: auto;
-	gap: 4px;
-}
-
-.yearly-day {
-	width: 10px;
-	height: 10px;
-	background-color: var(--components-bg-dark);
-	border: 1px solid var(--components-stroke-dark);
-	border-radius: 2px;
-}
-
-.tooltip {
-	position: fixed;
-	background-color: #151b23;
-	color: #f0f6fc;
-	padding: 5px 10px;
-	border-radius: 5px;
-	border: 1px solid #3d444d;
-	font-size: 12px;
-	pointer-events: none;
-	white-space: nowrap;
-	z-index: 1000;
-}
-*/
 
 .yearly-view {
 	display: flex;
@@ -214,9 +182,79 @@ h2 {
 	background-color: var(--components-stroke-light);
 }
 
+button {
+	background-color: var(--components-bg-light);
+	border: 1px solid var(--components-stroke-light);
+	color: var(--white-text);
+	padding: 1rem;
+	border-radius: 6px;
+	margin-top: 2rem;
+	cursor: pointer;
+	transition: all ease-in-out 0.1s;
+}
+
+button:hover {
+	background-color: #252c34;
+}
+
+button:active {
+	background-color: #2f3740;
+}
+
+button.danger {
+	color: var(--button-danger-text);
+}
+
 @media (min-width: 568px) {
+	button.danger:hover {
+		background-color: var(--button-danger-active-bg);
+		color: var(--white-text);
+	}
 	.day.filled:hover {
 		border-color: var(--components-green-bg);
 		cursor: pointer;
+	}
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 568px) {
+	.app {
+		flex-direction: column;
+	}
+
+	h2 {
+		font-size: 1.4em;
+	}
+	.calendar {
+		width: 100%;
+		max-width: none;
+		margin: 0.4rem;
+	}
+
+	.calendar-header button {
+		padding: 0.2rem;
+	}
+
+	.day-name {
+		font-size: 0.5rem;
+		padding: 0.2rem;
+	}
+
+	.day {
+		font-size: 1rem;
+	}
+
+	.yearly-day {
+		width: 12px;
+		height: 12px;
+	}
+
+	.tooltip {
+		font-size: 10px;
+	}
+
+	/* Adjust scrollbar for smaller screens */
+	.yearly-view-container::-webkit-scrollbar {
+		width: 1rem;
 	}
 }
