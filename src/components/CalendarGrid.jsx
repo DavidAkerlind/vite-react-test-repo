@@ -84,13 +84,13 @@ const CalendarGrid = ({ currentMonth, currentYear }) => {
 				))}
 			</div>
 
+			<YearlyView selectedDays={selectedDays} />
 			<Button
 				text="Clear all selected days"
 				className="button"
 				onClick={clearSelectedDays}
-				type="danger"></Button>
-
-			<YearlyView selectedDays={selectedDays} />
+				type="danger"
+			/>
 		</div>
 	);
 };

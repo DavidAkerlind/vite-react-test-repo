@@ -229,7 +229,7 @@ button.danger {
 	.calendar {
 		width: 95%;
 		max-width: none;
-		margin: 0.4rem;
+		margin: 1rem 0.4rem;
 	}
 
 	.calendar-header button {
@@ -243,6 +243,10 @@ button.danger {
 
 	.day {
 		font-size: 1rem;
+	}
+
+	.month-header {
+		gap: 3rem;
 	}
 
 	.yearly-day {
