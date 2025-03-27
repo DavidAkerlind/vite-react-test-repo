@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import YearlyView from './YearlyView';
 
 const CalendarGrid = ({ currentMonth, currentYear }) => {
-	const [selectedDays, setSelectedDays] = useState([]);
+	const [selectedDays, setSelectedDays] = useState({});
 
 	const getDaysInMonth = (year, month) => {
 		const firstDay = new Date(year, month, 1).getDay(); // Första veckodagen
@@ -15,6 +15,7 @@ const CalendarGrid = ({ currentMonth, currentYear }) => {
 		for (let i = 1; i <= daysInMonth; i++) {
 			days.push(i);
 		}
+
 		return days;
 	};
 
@@ -39,19 +40,23 @@ const CalendarGrid = ({ currentMonth, currentYear }) => {
 		selectedDays[`${currentYear}-${currentMonth}`] || [];
 
 	return (
-		<div className="calendar-grid">
-			{getDaysInMonth(currentYear, currentMonth).map((day, index) => (
-				<div
-					key={index}
-					className={`day ${
-						day && currentSelectedDays.includes(day)
-							? 'selected'
-							: ''
-					} ${day ? 'filled' : ''}`}
-					onClick={() => day && toggleDay(day)}>
-					{day}
-				</div>
-			))}
+		<div className="calendar-container">
+			<div className="calendar-grid">
+				{getDaysInMonth(currentYear, currentMonth).map((day, index) => (
+					<div
+						key={index}
+						className={`day ${
+							day && currentSelectedDays.includes(day)
+								? 'selected'
+								: ''
+						} ${day ? 'filled' : ''}`}
+						onClick={() => day && toggleDay(day)}>
+						{day}
+					</div>
+				))}
+			</div>
+
+			<YearlyView selectedDays={selectedDays} />
 		</div>
 	);
 };

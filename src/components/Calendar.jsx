@@ -22,7 +22,6 @@ const Calendar = () => {
 				selectedDays={selectedDays}
 				setSelectedDays={setSelectedDays}
 			/>
-			<YearlyView selectedDays={selectedDays} />
 		</div>
 	);
 };
