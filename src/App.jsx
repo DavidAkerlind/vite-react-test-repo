@@ -2,11 +2,25 @@ import React, { useEffect, useState } from 'react';
 import Calendar from './components/Calendar';
 import YearlyView from './components/YearlyView';
 import Button from './components/Button';
+import ThemeToggle from './components/ThemeToggle';
+import './index.css';
 
 const App = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
 	const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 	const [selectedDays, setSelectedDays] = useState({});
+	const [isDarkMode, setIsDarkMode] = useState(
+		localStorage.getItem('darkMode') === 'true'
+	);
+
+	useEffect(() => {
+		document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
+		localStorage.setItem('darkMode', isDarkMode);
+	}, [isDarkMode]);
+
+	const toggleMode = () => {
+		setIsDarkMode((prevMode) => !prevMode);
+	};
 
 	// Load selected days from localStorage when the component mounts
 	useEffect(() => {
@@ -62,6 +76,7 @@ const App = () => {
 				onClick={clearSelectedDays}
 				type="danger"
 			/>
+			<ThemeToggle isDarkMode={isDarkMode} toggleMode={toggleMode} />
 		</div>
 	);
 };
