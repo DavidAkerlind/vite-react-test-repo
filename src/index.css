@@ -208,9 +208,6 @@ button:active {
 button.danger {
 	color: var(--button-danger-text);
 }
-button.danger:hover {
-	color: #d1d9e0;
-}
 
 button.icon {
 	border: none;
@@ -224,7 +221,7 @@ button.icon:hover {
 @media (min-width: 568px) {
 	button.danger:hover {
 		background-color: var(--button-danger-active-bg);
-		color: var(--text-color);
+		color: #d1d9e0;
 	}
 	.day.filled:hover {
 		border-color: var(--components-green-bg);
