@@ -52,20 +52,6 @@ h2 {
 	border-radius: 6px;
 }
 
-.calendar-header button {
-	background: none;
-	color: var(--white-text);
-	border: none;
-	font-size: 2rem;
-	cursor: pointer;
-	margin-top: 8px;
-	transition: all ease-in-out 0.1s;
-}
-
-.calendar-header button:hover {
-	opacity: 0.7;
-}
-
 .day-name {
 	background-color: var(--components-bg-dark);
 	border-radius: 3px;
@@ -189,7 +175,6 @@ button {
 	color: var(--white-text);
 	padding: 0.7rem 1rem;
 	border-radius: 6px;
-	margin-top: 2rem;
 	cursor: pointer;
 	transition: all ease-in-out 0.1s;
 }
@@ -204,6 +189,9 @@ button:active {
 
 button.danger {
 	color: var(--button-danger-text);
+}
+
+button.icon {
 }
 
 @media (min-width: 568px) {

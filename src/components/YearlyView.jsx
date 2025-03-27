@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import MonthHeader from './MonthHeader';
+import YearlyGrid from './YearlyGrid';
 
 const YearlyView = ({ selectedDays }) => {
 	const [hoveredDay, setHoveredDay] = useState(null);
@@ -14,100 +16,15 @@ const YearlyView = ({ selectedDays }) => {
 		return 'th';
 	};
 
-	// Lista med månadsförkortningar
-	const monthAbbreviations = [
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec',
-	];
-
-	const generateYearWeeks = () => {
-		const yearWeeks = [];
-
-		// Loop through each month
-		for (let month = 0; month < 12; month++) {
-			const daysInMonth = new Date(2025, month + 1, 0).getDate();
-
-			// Loop through each day in the month
-			for (let day = 1; day <= daysInMonth; day++) {
-				const date = new Date(2025, month, day);
-
-				// Calculate the week number using the ISO week system
-				const weekNumber = Math.ceil(
-					(date - new Date(2025, 0, 1)) / (7 * 24 * 60 * 60 * 1000)
-				);
-
-				if (!yearWeeks[weekNumber]) {
-					yearWeeks[weekNumber] = [];
-				}
-
-				// Add the current day to the corresponding week
-				yearWeeks[weekNumber].push({ month, day });
-			}
-		}
-
-		return yearWeeks;
-	};
-
 	return (
 		<div className="yearly-view-container">
-			{/* Månadsförkortningar */}
-			<div className="month-header">
-				{monthAbbreviations.map((month, index) => (
-					<div key={index} className="month-label">
-						{month}
-					</div>
-				))}
-			</div>
-
-			<div className="yearly-view">
-				{generateYearWeeks().map((week, weekIndex) => (
-					<div key={weekIndex} className="week-column">
-						{week.map(({ month, day }, dayIndex) => {
-							const isSelected =
-								selectedDays[`${2025}-${month}`]?.includes(day);
-
-							return (
-								<div
-									key={dayIndex}
-									className={`yearly-day ${
-										isSelected ? 'selected' : ''
-									}`}
-									onMouseEnter={(e) => {
-										const monthName = new Date(
-											2025,
-											month,
-											day
-										).toLocaleString('en-US', {
-											month: 'long',
-										});
-										setHoveredDay(
-											`${monthName} ${day}${getOrdinalSuffix(
-												day
-											)}`
-										);
-										setTooltipPosition({
-											x: e.clientX,
-											y: e.clientY,
-										});
-									}}
-									onMouseLeave={() => setHoveredDay(null)}
-								/>
-							);
-						})}
-					</div>
-				))}
-			</div>
-
+			<MonthHeader />
+			<YearlyGrid
+				selectedDays={selectedDays}
+				setHoveredDay={setHoveredDay}
+				setTooltipPosition={setTooltipPosition}
+				getOrdinalSuffix={getOrdinalSuffix}
+			/>
 			{/* Tooltip som bara visas om hoveredDay inte är null */}
 			{hoveredDay && (
 				<div

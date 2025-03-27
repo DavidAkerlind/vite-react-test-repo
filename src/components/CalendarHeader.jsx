@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa';
+import Button from './Button'; // Import the Button component
 
 const CalendarHeader = ({ currentMonth, currentYear, setCurrentMonth }) => {
 	const months = [
@@ -19,21 +20,28 @@ const CalendarHeader = ({ currentMonth, currentYear, setCurrentMonth }) => {
 
 	return (
 		<div className="calendar-header">
-			<button
+			{/* Left Button for changing month */}
+			<Button
+				text={<FaCaretLeft style={{ fontSize: '2rem' }} />}
 				onClick={() =>
 					setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1))
-				}>
-				<FaCaretLeft />
-			</button>
+				}
+				type="icon" // You can change the type to 'danger' or any other type you prefer
+			/>
+
+			{/* Display current month and year */}
 			<h2>
 				{months[currentMonth]} {currentYear}
 			</h2>
-			<button
+
+			{/* Right Button for changing month */}
+			<Button
+				text={<FaCaretRight style={{ fontSize: '2rem' }} />}
 				onClick={() =>
 					setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1))
-				}>
-				<FaCaretRight />
-			</button>
+				}
+				type="icon" // You can change the type to 'danger' or any other type you prefer
+			/>
 		</div>
 	);
 };
