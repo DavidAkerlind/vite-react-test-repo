@@ -106,7 +106,7 @@ h2 {
 .yearly-day.selected {
 	border-color: var(--components-stroke-dark);
 	background: var(--components-green-bg);
-	color: var(--text-color);
+	color: #d1d9e0;
 }
 
 .yearly-view {
@@ -152,7 +152,7 @@ h2 {
 	overflow-x: auto;
 	border: 1px solid var(--components-stroke-light);
 	border-radius: 4px;
-	padding: 0.7em 0.5rem;
+	padding: 0.7em;
 	max-width: 95%;
 }
 
@@ -207,6 +207,11 @@ button:active {
 
 button.danger {
 	color: var(--button-danger-text);
+}
+
+button.icon {
+	border: none;
+	background-color: transparent;
 }
 
 @media (min-width: 568px) {

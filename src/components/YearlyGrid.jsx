@@ -61,10 +61,30 @@ const YearlyGrid = ({
 											day
 										)}`
 									);
-									setTooltipPosition({
-										x: e.clientX,
-										y: e.clientY,
-									});
+									const tooltipWidth = 110;
+									const tooltipHeight = 40;
+
+									const screenWidth = window.innerWidth;
+									const screenHeight = window.innerHeight;
+
+									let xPos = e.clientX - 55;
+									if (xPos + tooltipWidth > screenWidth) {
+										xPos = screenWidth - tooltipWidth - 10;
+									}
+									if (xPos < 10) {
+										xPos = 10;
+									}
+
+									let yPos = e.clientY - 50;
+									if (yPos + tooltipHeight > screenHeight) {
+										yPos =
+											screenHeight - tooltipHeight - 10;
+									}
+									if (yPos < 10) {
+										yPos = 10;
+									}
+
+									setTooltipPosition({ x: xPos, y: yPos });
 								}}
 								onMouseLeave={() => setHoveredDay(null)}
 							/>
