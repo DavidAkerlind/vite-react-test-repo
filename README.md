@@ -19,20 +19,21 @@ Follow these steps to run the application locally:
 
 2. Navigate to the project folder:
 
-sh
-
-cd your-repo
-
-
+  ```sh
+  cd vite-react-test-rep
+```
 3. Install dependencies:
 
-
-  npm install
+```sh
+ npm install
+```
 
 4. Start the application:
 
+```sh
+ npm start
+```
 
-npm start
 
 
 Usage
