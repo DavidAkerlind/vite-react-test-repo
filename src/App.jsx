@@ -3,6 +3,7 @@ import Calendar from './components/Calendar';
 import YearlyView from './components/YearlyView';
 import Button from './components/Button';
 import ThemeToggle from './components/ThemeToggle';
+import Footer from './components/Footer';
 import './index.css';
 
 const App = () => {
@@ -53,6 +54,18 @@ const App = () => {
 		}
 	};
 
+	// Function to clear all selected days for the current month
+	const clearSelectedDaysForMonth = () => {
+		const key = `${currentYear}-${currentMonth}`;
+		const updatedSelectedDays = { ...selectedDays };
+		delete updatedSelectedDays[key]; // Ta bort de valda dagarna för denna månad
+		setSelectedDays(updatedSelectedDays);
+		localStorage.setItem(
+			'selectedDays',
+			JSON.stringify(updatedSelectedDays)
+		); // Uppdatera localStorage
+	};
+
 	// Function to clear all selected days
 	const clearSelectedDays = () => {
 		setSelectedDays({});
@@ -69,14 +82,24 @@ const App = () => {
 				selectedDays={selectedDays}
 				toggleDay={toggleDay}
 			/>
-			<YearlyView selectedDays={selectedDays} />
+			<YearlyView
+				setCurrentMonth={setCurrentMonth}
+				selectedDays={selectedDays}
+			/>
 			<Button
 				text="Clear all selected days"
 				className="button"
 				onClick={clearSelectedDays}
 				type="danger"
 			/>
+			<Button
+				text="Clear selected days for this month"
+				className="button"
+				onClick={clearSelectedDaysForMonth}
+				type="danger"
+			/>
 			<ThemeToggle isDarkMode={isDarkMode} toggleMode={toggleMode} />
+			<Footer />
 		</div>
 	);
 };

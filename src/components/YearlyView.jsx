@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MonthHeader from './MonthHeader';
 import YearlyGrid from './YearlyGrid';
 
-const YearlyView = ({ selectedDays }) => {
+const YearlyView = ({ setCurrentMonth, selectedDays }) => {
 	const [hoveredDay, setHoveredDay] = useState(null);
 	const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
@@ -18,7 +18,7 @@ const YearlyView = ({ selectedDays }) => {
 
 	return (
 		<div className="yearly-view-container">
-			<MonthHeader />
+			<MonthHeader setCurrentMonth={setCurrentMonth} />
 			<YearlyGrid
 				selectedDays={selectedDays}
 				setHoveredDay={setHoveredDay}

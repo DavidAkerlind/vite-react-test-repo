@@ -5,6 +5,7 @@
 	--components-green-stroke: #196c2e;
 	--button-danger-text: #fa5e55;
 	--button-danger-active-bg: #d03533;
+	--white-text: #fff;
 }
 .dark-mode {
 	--button-background: #212830;
@@ -15,6 +16,8 @@
 	--components-background: #151b23;
 	--components-stroke-dark: #1e242b;
 	--components-stroke-light: #3d444d;
+	--slider-color: #0d1117;
+	--slider-color-active: #0d1117c7;
 }
 
 .light-mode {
@@ -26,6 +29,8 @@
 	--button-default-active: #dbdfe2;
 	--components-background: #eff2f5;
 	--components-stroke-light: #e1e6eb;
+	--slider-color: #3d444d;
+	--slider-color-active: #3d444ddb;
 }
 
 * {
@@ -106,7 +111,7 @@ h2 {
 .yearly-day.selected {
 	border-color: var(--components-stroke-dark);
 	background: var(--components-green-bg);
-	color: #d1d9e0;
+	color: var(--white-text);
 }
 
 .yearly-view {
@@ -158,12 +163,20 @@ h2 {
 
 .month-header {
 	display: flex;
-	justify-content: space-between;
 	width: 100%;
 	max-width: 800px;
 	padding: 5px 0;
 	font-size: 0.8rem;
 	gap: 2.4rem;
+}
+
+.month-label {
+	cursor: pointer;
+}
+
+.month-label:active {
+	cursor: pointer;
+	opacity: 0.8;
 }
 
 .yearly-view-container::-webkit-scrollbar {
@@ -173,13 +186,13 @@ h2 {
 
 /* Scrollbarens "thumb" (själva rullningsfältet) */
 .yearly-view-container::-webkit-scrollbar-thumb {
-	background-color: var(--components-background);
+	background-color: var(--slider-color);
 	border-radius: 4px;
 	border: 1px solid var(--components-stroke-light);
 }
 
 .yearly-view-container::-webkit-scrollbar-thumb:active {
-	background-color: var(--components-stroke-dark);
+	background-color: var(--slider-color-active);
 }
 
 /* Scrollbarens spår (bakgrunden) */
@@ -206,6 +219,7 @@ button:active {
 }
 
 button.danger {
+	font-weight: 600;
 	color: var(--button-danger-text);
 }
 
@@ -216,17 +230,6 @@ button.icon {
 
 button.icon:hover {
 	opacity: 0.8;
-}
-
-@media (min-width: 568px) {
-	button.danger:hover {
-		background-color: var(--button-danger-active-bg);
-		color: #d1d9e0;
-	}
-	.day.filled:hover {
-		border-color: var(--components-green-bg);
-		cursor: pointer;
-	}
 }
 
 .theme-toggle-section {
@@ -284,6 +287,20 @@ input:checked + .slider::before {
 	transform: translateX(24px);
 }
 
+/* Desktop-friendly adjustments */
+@media (min-width: 568px) {
+	button.danger:hover {
+		background-color: var(--button-danger-active-bg);
+		color: var(--white-text);
+	}
+	.day.filled:hover {
+		border-color: var(--components-green-bg);
+		cursor: pointer;
+	}
+	.month-label:hover {
+		opacity: 0.9;
+	}
+}
 /* Mobile-friendly adjustments */
 @media (max-width: 568px) {
 	.app {

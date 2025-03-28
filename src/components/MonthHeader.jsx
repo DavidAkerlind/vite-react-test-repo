@@ -16,11 +16,14 @@ const monthAbbreviations = [
 	'Dec',
 ];
 
-const MonthHeader = () => {
+const MonthHeader = ({ setCurrentMonth }) => {
 	return (
 		<div className="month-header">
 			{monthAbbreviations.map((month, index) => (
-				<div key={index} className="month-label">
+				<div
+					onClick={() => setCurrentMonth(index)}
+					key={index}
+					className="month-label">
 					{month}
 				</div>
 			))}
