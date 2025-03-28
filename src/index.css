@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-	--components-green-bg: #2ea043;
-	--components-green-stroke: #196c2e;
+	--components-active-bg: #2ea043;
 	--button-danger-text: #fa5e55;
 	--button-danger-active-bg: #d03533;
 	--white-text: #fff;
@@ -31,6 +30,10 @@
 	--components-stroke-light: #e1e6eb;
 	--slider-color: #3d444d;
 	--slider-color-active: #3d444ddb;
+}
+
+.pink-mode {
+	--components-active-bg: #ff69b4;
 }
 
 * {
@@ -110,7 +113,7 @@ h2 {
 .day.selected,
 .yearly-day.selected {
 	border-color: var(--components-stroke-dark);
-	background: var(--components-green-bg);
+	background: var(--components-active-bg);
 	color: var(--white-text);
 }
 
@@ -280,7 +283,7 @@ button.icon:hover {
 }
 
 input:checked + .slider {
-	background-color: var(--components-green-bg);
+	background-color: var(--components-active-bg);
 }
 
 input:checked + .slider::before {
@@ -294,7 +297,7 @@ input:checked + .slider::before {
 		color: var(--white-text);
 	}
 	.day.filled:hover {
-		border-color: var(--components-green-bg);
+		border-color: var(--components-active-bg);
 		cursor: pointer;
 	}
 	.month-label:hover {

@@ -1,10 +1,10 @@
 import React from 'react';
 // import './ThemeToggle.css';
 
-const ThemeToggle = ({ isDarkMode, toggleMode }) => {
+const ThemeToggle = ({ text, isDarkMode, toggleMode }) => {
 	return (
 		<div className="theme-toggle-section">
-			Dark Mode
+			{text}
 			<label className="theme-toggle">
 				<input
 					type="checkbox"

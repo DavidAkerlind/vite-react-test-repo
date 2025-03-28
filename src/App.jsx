@@ -13,16 +13,29 @@ const App = () => {
 	const [isDarkMode, setIsDarkMode] = useState(
 		localStorage.getItem('darkMode') === 'true'
 	);
+	// Separate state for Pink Mode
+	const [isPinkMode, setIsPinkMode] = useState(
+		localStorage.getItem('pinkMode') === 'true'
+	);
 
 	useEffect(() => {
-		document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
-		localStorage.setItem('darkMode', isDarkMode);
-	}, [isDarkMode]);
+		// Determine class based on both Dark and Pink Mode
+		let themeClass = isDarkMode ? 'dark-mode' : 'light-mode';
+		if (isPinkMode) themeClass += ' pink-mode';
+		document.body.className = themeClass;
 
-	const toggleMode = () => {
+		// Save settings in localStorage
+		localStorage.setItem('darkMode', isDarkMode);
+		localStorage.setItem('pinkMode', isPinkMode);
+	}, [isDarkMode, isPinkMode]);
+
+	const toggleDarkMode = () => {
 		setIsDarkMode((prevMode) => !prevMode);
 	};
 
+	const togglePinkMode = () => {
+		setIsPinkMode((prevMode) => !prevMode);
+	};
 	// Load selected days from localStorage when the component mounts
 	useEffect(() => {
 		const savedDays = localStorage.getItem('selectedDays');
@@ -98,7 +111,17 @@ const App = () => {
 				onClick={clearSelectedDaysForMonth}
 				type="danger"
 			/>
-			<ThemeToggle isDarkMode={isDarkMode} toggleMode={toggleMode} />
+			<Button
+				text="Toggle Dark Mode"
+				className="button"
+				onClick={toggleDarkMode}
+			/>
+			<Button
+				text="Toggle Pink Mode"
+				className="button pink-button"
+				onClick={togglePinkMode}
+			/>
+
 			<Footer />
 		</div>
 	);
