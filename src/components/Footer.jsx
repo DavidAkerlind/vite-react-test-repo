@@ -1,3 +1,5 @@
+import calendarIcon from '../assets/calendar-black.svg';
+
 function Footer() {
 	return (
 		<footer className="footer">
@@ -12,7 +14,11 @@ function Footer() {
 				<a href="#">Do not share my personal information</a>
 			</div>
 			<div className="footer-logo">
-				<img src="./public/calendar-black.svg" alt="" />
+				<img
+					type="image/svg+xml"
+					src={calendarIcon}
+					alt="Calendar logo"
+				/>
 				<span>© 2025 GitHub, Inc.</span>
 			</div>
 		</footer>
