@@ -5,10 +5,12 @@
 	--button-danger-text: #fa5e55;
 	--button-danger-active-bg: #d03533;
 	--white-text: #fff;
+	--link-hover-color: #4493f8;
 }
 .dark-mode {
 	--button-background: #212830;
 	--text-color: #f0f6fc;
+	--text-color-secondary: #8e969b;
 	--button-default-hover: #252c34;
 	--button-default-active: #2f3740;
 	--background-color: #0d1117;
@@ -22,6 +24,7 @@
 .light-mode {
 	--components-stroke-dark: #d1d9e0;
 	--text-color: #393d41;
+	--text-color-secondary: #cfd4d9;
 	--background-color: #fff;
 	--button-background: #f6f8fa;
 	--button-default-hover: #eaedf0;
@@ -290,7 +293,48 @@ input:checked + .slider::before {
 	transform: translateX(24px);
 }
 
-/* Desktop-friendly adjustments */
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	color: var(--text-color-secondary);
+	font-size: 0.73rem;
+	font-weight: 400;
+	margin-bottom: 1rem;
+	max-width: 95%;
+}
+
+footer img {
+	max-width: 15px;
+	cursor: pointer;
+	margin-bottom: 0.2rem;
+}
+.footer-logo {
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
+}
+
+.footer-links {
+	display: flex;
+	align-items: center;
+	gap: 3vw;
+	width: 100%;
+	text-align: center;
+}
+
+.footer-links a {
+	text-align: center;
+	text-decoration: none;
+	font-size: 0.73rem;
+	font-weight: 400;
+	color: var(--text-color-secondary);
+}
+
+/* Desktop-friendly adjustments Hover*/
 @media (min-width: 568px) {
 	button.danger:hover {
 		background-color: var(--button-danger-active-bg);
@@ -302,6 +346,10 @@ input:checked + .slider::before {
 	}
 	.month-label:hover {
 		opacity: 0.9;
+	}
+	.footer-links a:hover {
+		text-decoration: underline;
+		color: var(--link-hover-color);
 	}
 }
 /* Mobile-friendly adjustments */

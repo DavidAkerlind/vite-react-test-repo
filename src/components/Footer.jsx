@@ -1,26 +1,31 @@
-import calendarIcon from '../assets/calendar-black.svg';
+import calendarIconBlack from '../assets/calendar-black.svg';
+import calendarIconWhite from '../assets/calendar-white.svg';
 
 function Footer() {
+	const footerLinks = [
+		{ text: 'Settings', link: '#' },
+		{ text: 'Contact', link: '#' },
+		{ text: 'Calendar', link: '#' },
+		{ text: 'Status', link: '#' },
+	];
+
 	return (
 		<footer className="footer">
-			<div className="footer-links">
-				<a href="#">Terms</a>
-				<a href="#">Privacy</a>
-				<a href="#">Security</a>
-				<a href="#">Status</a>
-				<a href="#">Docs</a>
-				<a href="#">Contact</a>
-				<a href="#">Manage cookies</a>
-				<a href="#">Do not share my personal information</a>
-			</div>
-			<div className="footer-logo">
+			<section className="footer-links">
+				{footerLinks.map((item, index) => (
+					<a key={index} href={item.link}>
+						{item.text}
+					</a>
+				))}
+			</section>
+			<section className="footer-logo">
 				<img
 					type="image/svg+xml"
-					src={calendarIcon}
+					src={calendarIconWhite}
 					alt="Calendar logo"
 				/>
-				<span>© 2025 GitHub, Inc.</span>
-			</div>
+				<span>© 2025 Checkbox Calendar, Inc.</span>
+			</section>
 		</footer>
 	);
 }
