@@ -24,7 +24,6 @@ const App = () => {
 		let themeClass = isDarkMode ? 'dark-mode' : 'light-mode';
 		if (isPinkMode) themeClass += ' pink-mode';
 		document.body.className = themeClass;
-		console.log(themeClass);
 
 		// Save settings in localStorage
 		localStorage.setItem('darkMode', isDarkMode);
@@ -87,9 +86,18 @@ const App = () => {
 		localStorage.removeItem('selectedDays');
 	};
 
+	const totalSelectedDays = Object.values(selectedDays).reduce(
+		(acc, days) => acc + days.length,
+		0
+	);
+
 	return (
 		<div className="app">
-			<Header isDarkMode={isDarkMode} isPinkMode={isPinkMode} />
+			<Header
+				isDarkMode={isDarkMode}
+				isPinkMode={isPinkMode}
+				totalSelectedDays={totalSelectedDays}
+			/>
 
 			<Calendar
 				currentMonth={currentMonth}

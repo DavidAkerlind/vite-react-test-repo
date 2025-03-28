@@ -1,6 +1,6 @@
 import NavItem from './NavItem';
 
-function NavBar() {
+function NavBar({ totalSelectedDays }) {
 	const navItems = [
 		{
 			text: 'Calendar',
@@ -16,7 +16,12 @@ function NavBar() {
 		<ul className="nav">
 			{navItems.map((item, index) => {
 				return (
-					<NavItem key={index} text={item.text} link={item.link} />
+					<NavItem
+						totalSelectedDays={totalSelectedDays}
+						key={index}
+						text={item.text}
+						link={item.link}
+					/>
 				);
 			})}
 		</ul>

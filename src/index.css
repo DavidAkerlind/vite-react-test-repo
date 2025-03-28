@@ -8,6 +8,7 @@
 	--link-hover-color: #4493f8;
 }
 .dark-mode {
+	--header-background: #010409;
 	--button-background: #212830;
 	--text-color: #f0f6fc;
 	--text-color-secondary: #8e969b;
@@ -22,6 +23,7 @@
 }
 
 .light-mode {
+	--header-background: #ffffff;
 	--components-stroke-dark: #d1d9e0;
 	--text-color: #393d41;
 	--text-color-secondary: #cfd4d9;
@@ -45,6 +47,13 @@
 	padding: 0;
 }
 
+.d-none {
+	display: none;
+}
+
+.transparent {
+	opacity: 0;
+}
 h2 {
 	font-weight: 500;
 	font-size: 2rem;
@@ -58,13 +67,64 @@ header {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	padding: 1rem 0.5rem;
+	padding: 0.8rem 0.8rem 0.4rem 0.8rem;
 	align-items: center;
+	background-color: var(--components-background);
+	border-bottom: 1px solid var(--components-stroke-light);
+}
+
+header a {
+	display: flex;
+	color: var(--text-color);
+	align-items: center;
+	gap: 0.5rem;
+}
+
+header h1 {
+	font-size: 1rem;
 }
 
 header img {
-	width: 30px;
+	width: 25px;
 	transition: all ease-in-out 0.1s;
+}
+
+button {
+	background-color: var(--button-background);
+	border: 1px solid var(--components-stroke-light);
+	color: var(--text-color);
+	padding: 0.7rem 1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all ease-in-out 0.1s;
+}
+
+button:active {
+	background-color: var(--button-default-active);
+}
+
+button.danger {
+	font-weight: 600;
+	color: var(--button-danger-text);
+}
+
+button.icon {
+	border: none;
+	background-color: transparent;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	color: var(--text-color-secondary);
+	font-size: 0.73rem;
+	font-weight: 400;
+	margin-bottom: 1rem;
+	max-width: 95%;
 }
 
 .app {
@@ -222,30 +282,6 @@ header img {
 	background-color: var(--components-stroke-light);
 }
 
-button {
-	background-color: var(--button-background);
-	border: 1px solid var(--components-stroke-light);
-	color: var(--text-color);
-	padding: 0.7rem 1rem;
-	border-radius: 6px;
-	cursor: pointer;
-	transition: all ease-in-out 0.1s;
-}
-
-button:active {
-	background-color: var(--button-default-active);
-}
-
-button.danger {
-	font-weight: 600;
-	color: var(--button-danger-text);
-}
-
-button.icon {
-	border: none;
-	background-color: transparent;
-}
-
 .theme-toggle-section {
 	display: flex;
 	color: var(--text-color);
@@ -301,20 +337,6 @@ input:checked + .slider::before {
 	transform: translateX(24px);
 }
 
-footer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	color: var(--text-color-secondary);
-	font-size: 0.73rem;
-	font-weight: 400;
-	margin-bottom: 1rem;
-	max-width: 95%;
-}
-
 footer img {
 	max-width: 15px;
 	cursor: pointer;
@@ -339,6 +361,38 @@ footer img {
 	font-size: 0.73rem;
 	font-weight: 400;
 	color: var(--text-color-secondary);
+}
+
+.nav {
+	display: flex;
+	gap: 1rem;
+}
+
+.nav__item {
+	flex: 1;
+	padding: 0.5rem;
+}
+
+.nav__item.active {
+	position: relative;
+}
+
+.nav__item.active::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: -7px;
+	width: 110%;
+	height: 2px;
+	background-color: var(--components-active-bg);
+	transform: translateX(-50%);
+}
+.nav__item-amount {
+	padding: 0.2rem 0.5rem;
+	color: var(--components-active-bg);
+	max-width: 32px;
+	background-color: var(--button-background);
+	border-radius: 30px;
 }
 
 /* Desktop-friendly adjustments Hover*/
@@ -369,11 +423,20 @@ footer img {
 	header img:hover {
 		opacity: 0.7;
 	}
+
+	.nav__item:hover {
+		background-color: var(--button-background);
+		border-radius: 6px;
+	}
 }
 /* Mobile-friendly adjustments */
 @media (max-width: 568px) {
 	.app {
 		flex-direction: column;
+	}
+
+	h1 {
+		display: none;
 	}
 
 	h2 {
