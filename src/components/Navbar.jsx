@@ -4,11 +4,15 @@ function NavBar({ totalSelectedDays }) {
 	const navItems = [
 		{
 			text: 'Calendar',
-			link: './index.html',
+			link: '/Calendar',
+		},
+		{
+			text: 'Year',
+			link: '/yearly-view',
 		},
 		{
 			text: 'Settings',
-			link: './index.html',
+			link: '/Settings',
 		},
 	];
 

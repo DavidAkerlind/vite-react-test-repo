@@ -1,21 +1,23 @@
-import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function NavItem({ text, link, totalSelectedDays }) {
-	const isCalendar = text === 'Calendar';
+	const location = useLocation(); // Get the current URL path
+	const isActive = location.pathname === link; // Check if this link is active
+	const isCalendar = link === '/calendar'; // Check if it's the Calendar link
 
-	// Determine if the span should be displayed
+	// Show the span only for Calendar if there are selected days
 	const showSpan = isCalendar && totalSelectedDays > 0;
 
 	// Dynamic class handling
-	const className = `nav__item ${isCalendar ? 'active' : ''}`.trim();
+	const className = `nav__item ${isActive ? 'active' : ''}`.trim();
 
 	return (
-		<a href={link} className={className}>
+		<Link to={link} className={className}>
 			{text}
 			{showSpan && (
 				<span className="nav__item-amount">{totalSelectedDays}</span>
 			)}
-		</a>
+		</Link>
 	);
 }
 
