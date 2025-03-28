@@ -6,29 +6,33 @@ const YearlyGrid = ({
 	setTooltipPosition,
 	getOrdinalSuffix,
 }) => {
+	const getWeekStartDate = (date) => {
+		// Första dagen på veckan ska vara måndag (0 = måndag)
+		const dayOfWeek = date.getDay();
+		const diff = (dayOfWeek === 0 ? -6 : 1) - dayOfWeek; // För att få måndag som vecka start
+		date.setDate(date.getDate() + diff); // Justera till måndag
+		return date;
+	};
+
 	const generateYearWeeks = () => {
 		const yearWeeks = [];
+		let currentDay = new Date(2025, 0, 1); // Startar från 1 januari 2025
 
-		// Loop through each month
-		for (let month = 0; month < 12; month++) {
-			const daysInMonth = new Date(2025, month + 1, 0).getDate();
+		// Hitta måndagen för varje vecka och skapa veckorna
+		while (currentDay.getFullYear() === 2025) {
+			const weekStartDate = getWeekStartDate(new Date(currentDay));
+			const week = [];
 
-			// Loop through each day in the month
-			for (let day = 1; day <= daysInMonth; day++) {
-				const date = new Date(2025, month, day);
-
-				// Calculate the week number using the ISO week system
-				const weekNumber = Math.ceil(
-					(date - new Date(2025, 0, 1)) / (7 * 24 * 60 * 60 * 1000)
-				);
-
-				if (!yearWeeks[weekNumber]) {
-					yearWeeks[weekNumber] = [];
+			// Fyll veckodagar för denna vecka
+			for (let i = 0; i < 7; i++) {
+				if (weekStartDate.getFullYear() === 2025) {
+					week.push(new Date(weekStartDate)); // Lägg till dagen i veckan
 				}
-
-				// Add the current day to the corresponding week
-				yearWeeks[weekNumber].push({ month, day });
+				weekStartDate.setDate(weekStartDate.getDate() + 1); // Gå vidare till nästa dag
 			}
+
+			yearWeeks.push(week);
+			currentDay.setDate(currentDay.getDate() + 7); // Gå vidare till nästa vecka
 		}
 
 		return yearWeeks;
@@ -38,9 +42,10 @@ const YearlyGrid = ({
 		<div className="yearly-view">
 			{generateYearWeeks().map((week, weekIndex) => (
 				<div key={weekIndex} className="week-column">
-					{week.map(({ month, day }, dayIndex) => {
-						const isSelected =
-							selectedDays[`${2025}-${month}`]?.includes(day);
+					{week.map((date, dayIndex) => {
+						const isSelected = selectedDays[
+							`${date.getFullYear()}-${date.getMonth()}`
+						]?.includes(date.getDate());
 
 						return (
 							<div
@@ -49,21 +54,21 @@ const YearlyGrid = ({
 									isSelected ? 'selected' : ''
 								}`}
 								onMouseEnter={(e) => {
-									const monthName = new Date(
-										2025,
-										month,
-										day
-									).toLocaleString('en-US', {
-										month: 'long',
-									});
+									const monthName = date.toLocaleString(
+										'en-US',
+										{
+											month: 'long',
+										}
+									);
 									setHoveredDay(
-										`${monthName} ${day}${getOrdinalSuffix(
-											day
+										`${monthName} ${date.getDate()}${getOrdinalSuffix(
+											date.getDate()
 										)}`
 									);
+
+									// Tooltip position correction
 									const tooltipWidth = 110;
 									const tooltipHeight = 40;
-
 									const screenWidth = window.innerWidth;
 									const screenHeight = window.innerHeight;
 
