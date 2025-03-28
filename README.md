@@ -13,13 +13,13 @@ A modern calendar application built with React that offers both monthly and year
 ## Installation  
 Follow these steps to run the application locally:  
 
-1. Clone the repository:  
-   ```sh
+1. Clone the repository:
+ ```sh
    git clone https://github.com/vite-react-test-repo.git
+```
+3. Navigate to the project folder:
 
-2. Navigate to the project folder:
-
-  ```sh
+```sh
   cd vite-react-test-rep
 ```
 3. Install dependencies:
