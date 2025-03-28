@@ -117,7 +117,7 @@ const App = () => {
 				onClick={toggleDarkMode}
 			/>
 			<Button
-				text="Toggle Pink Mode"
+				text="Toggle Emilia Mode"
 				className="button pink-button"
 				onClick={togglePinkMode}
 			/>
