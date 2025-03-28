@@ -1,7 +1,7 @@
 
 # Calendar App  
 
-A modern calendar application built with `React` that offers both monthly and yearly views. The app supports dark and light mode and allows users to select specific days, which are saved in `localStorage` to persist between sessions.  
+A modern calendar application built with `React` that offers both monthly and yearly views, heavy inspired by githubs profile overview. The app supports dark and light mode and allows users to select specific days, which are saved in `localStorage` to persist between sessions.  
 
 ## Features  
 ✅ Toggle between dark mode and light mode with a smooth slider  
