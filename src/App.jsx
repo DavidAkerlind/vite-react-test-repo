@@ -3,6 +3,7 @@ import Calendar from './components/Calendar';
 import YearlyView from './components/YearlyView';
 import Button from './components/Button';
 import ThemeToggle from './components/ThemeToggle';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import './index.css';
 
@@ -23,6 +24,7 @@ const App = () => {
 		let themeClass = isDarkMode ? 'dark-mode' : 'light-mode';
 		if (isPinkMode) themeClass += ' pink-mode';
 		document.body.className = themeClass;
+		console.log(themeClass);
 
 		// Save settings in localStorage
 		localStorage.setItem('darkMode', isDarkMode);
@@ -87,6 +89,8 @@ const App = () => {
 
 	return (
 		<div className="app">
+			<Header isDarkMode={isDarkMode} isPinkMode={isPinkMode} />
+
 			<Calendar
 				currentMonth={currentMonth}
 				currentYear={currentYear}

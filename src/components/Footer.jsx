@@ -1,5 +1,4 @@
-import calendarIconBlack from '../assets/calendar-black.svg';
-import calendarIconWhite from '../assets/calendar-white.svg';
+import calendarIconGray from '../assets/calendar-gray.svg';
 
 function Footer() {
 	const footerLinks = [
@@ -21,7 +20,7 @@ function Footer() {
 			<section className="footer-logo">
 				<img
 					type="image/svg+xml"
-					src={calendarIconWhite}
+					src={calendarIconGray}
 					alt="Calendar logo"
 				/>
 				<span>© 2025 Checkbox Calendar, Inc.</span>
