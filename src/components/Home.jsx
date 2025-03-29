@@ -3,16 +3,19 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 	return (
-		<div>
+		<section className="home-section">
 			<h2>Welcome to the Calendar App</h2>
-			<p>Select an option below:</p>
+
 			<Link to="/calendar">
-				<button className="button">Go to Calendar</button>
+				<button>Go to Calendar</button>
 			</Link>
 			<Link to="/yearly-view">
-				<button className="button">Yearly View</button>
+				<button>Yearly View</button>
 			</Link>
-		</div>
+			<Link to="/settings">
+				<button>Settings</button>
+			</Link>
+		</section>
 	);
 };
 

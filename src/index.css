@@ -401,14 +401,20 @@ footer img {
 	border-radius: 30px;
 }
 
-.settings {
+.settings,
+.home-section {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: 2rem;
-	align-self: flex-start;
+	width: 95%;
 	margin: 0.5rem;
+}
+
+.home-section {
+	align-items: center;
+	gap: 10rem;
 }
 
 /* Desktop-friendly adjustments Hover*/

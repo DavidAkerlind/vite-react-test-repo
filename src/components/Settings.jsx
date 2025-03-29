@@ -32,7 +32,11 @@ const Settings = ({
 			<h2>Settings</h2>
 			<p className="transparent">Adjust your preferences below:</p>
 
-			<ThemeToggle text="Dark Mode" toggleMode={toggleDarkMode} />
+			<ThemeToggle
+				text="Dark Mode"
+				isMode={isDarkMode}
+				toggleMode={toggleDarkMode}
+			/>
 
 			<ThemeToggle text="Emilia Mode" toggleMode={togglePinkMode} />
 
