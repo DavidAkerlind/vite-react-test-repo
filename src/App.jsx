@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Calendar from './components/Calendar';
 import YearlyView from './components/YearlyView';
-import Button from './components/Button';
-import ThemeToggle from './components/ThemeToggle';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './components/Home'; // Create a Home component
+import Home from './components/Home';
 import Settings from './components/Settings';
+import {
+	toggleDay,
+	clearSelectedDaysForMonth,
+	clearSelectedDays,
+	setLocalStorage,
+	getLocalStorage,
+	toggleTheme,
+} from './components/Utils'; // Import the utils functions
 import './index.css';
 
 const App = () => {
@@ -22,55 +28,46 @@ const App = () => {
 	);
 
 	useEffect(() => {
-		let themeClass = isDarkMode ? 'dark-mode' : 'light-mode';
-		if (isPinkMode) themeClass += ' pink-mode';
-		document.body.className = themeClass;
+		toggleTheme(isDarkMode, isPinkMode); // Set theme on load
 
-		localStorage.setItem('darkMode', isDarkMode);
-		localStorage.setItem('pinkMode', isPinkMode);
+		setLocalStorage('darkMode', isDarkMode);
+		setLocalStorage('pinkMode', isPinkMode);
 	}, [isDarkMode, isPinkMode]);
 
 	useEffect(() => {
-		const savedDays = localStorage.getItem('selectedDays');
+		const savedDays = getLocalStorage('selectedDays');
 		if (savedDays) {
-			setSelectedDays(JSON.parse(savedDays));
+			setSelectedDays(savedDays);
 		}
 	}, []);
 
 	useEffect(() => {
-		localStorage.setItem('selectedDays', JSON.stringify(selectedDays));
+		setLocalStorage('selectedDays', selectedDays);
 	}, [selectedDays]);
 
-	const toggleDay = (day) => {
-		const key = `${currentYear}-${currentMonth}`;
-		const monthSelections = selectedDays[key] || [];
-
-		if (monthSelections.includes(day)) {
-			setSelectedDays({
-				...selectedDays,
-				[key]: monthSelections.filter((d) => d !== day),
-			});
-		} else {
-			setSelectedDays({
-				...selectedDays,
-				[key]: [...monthSelections, day],
-			});
-		}
-	};
-
-	const clearSelectedDaysForMonth = () => {
-		const key = `${currentYear}-${currentMonth}`;
-		const updatedSelectedDays = { ...selectedDays };
-		delete updatedSelectedDays[key];
-		setSelectedDays(updatedSelectedDays);
-		localStorage.setItem(
-			'selectedDays',
-			JSON.stringify(updatedSelectedDays)
+	const toggleDayHandler = (day) => {
+		const updatedSelectedDays = toggleDay(
+			currentYear,
+			currentMonth,
+			selectedDays,
+			day
 		);
+		setSelectedDays(updatedSelectedDays);
 	};
 
-	const clearSelectedDays = () => {
-		setSelectedDays({});
+	const clearSelectedDaysForMonthHandler = () => {
+		const updatedSelectedDays = clearSelectedDaysForMonth(
+			currentYear,
+			currentMonth,
+			selectedDays
+		);
+		setSelectedDays(updatedSelectedDays);
+		setLocalStorage('selectedDays', updatedSelectedDays);
+	};
+
+	const clearSelectedDaysHandler = () => {
+		const updatedSelectedDays = clearSelectedDays();
+		setSelectedDays(updatedSelectedDays);
 		localStorage.removeItem('selectedDays');
 	};
 
@@ -79,11 +76,11 @@ const App = () => {
 		0
 	);
 
-	const toggleDarkMode = () => {
+	const toggleDarkModeHandler = () => {
 		setIsDarkMode((prevMode) => !prevMode);
 	};
 
-	const togglePinkMode = () => {
+	const togglePinkModeHandler = () => {
 		setIsPinkMode((prevMode) => !prevMode);
 	};
 
@@ -107,7 +104,10 @@ const App = () => {
 								setCurrentMonth={setCurrentMonth}
 								setCurrentYear={setCurrentYear}
 								selectedDays={selectedDays}
-								toggleDay={toggleDay}
+								toggleDay={toggleDayHandler}
+								clearSelectedDaysForMonth={
+									clearSelectedDaysForMonthHandler
+								}
 							/>
 						}
 					/>
@@ -125,12 +125,12 @@ const App = () => {
 						element={
 							<Settings
 								isDarkMode={isDarkMode}
-								toggleDarkMode={toggleDarkMode}
+								toggleDarkMode={toggleDarkModeHandler}
 								isPinkMode={isPinkMode}
-								togglePinkMode={togglePinkMode}
-								clearSelectedDays={clearSelectedDays}
+								togglePinkMode={togglePinkModeHandler}
+								clearSelectedDays={clearSelectedDaysHandler}
 								clearSelectedDaysForMonth={
-									clearSelectedDaysForMonth
+									clearSelectedDaysForMonthHandler
 								}
 								currentMonth={currentMonth}
 							/>

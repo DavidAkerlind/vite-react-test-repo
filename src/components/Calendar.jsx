@@ -4,6 +4,7 @@ import CalendarDays from './CalendarDays';
 import CalendarGrid from './CalendarGrid';
 import YearlyView from './YearlyView';
 import Button from './Button';
+import { getCurrentMonthName } from './Utils';
 
 const Calendar = ({
 	currentMonth,
@@ -32,6 +33,13 @@ const Calendar = ({
 			<YearlyView
 				setCurrentMonth={setCurrentMonth}
 				selectedDays={selectedDays}
+			/>
+			<Button
+				type="danger"
+				text={`Clear selected days in ${getCurrentMonthName(
+					currentMonth
+				)}`}
+				onClick={clearSelectedDaysForMonth}
 			/>
 		</div>
 	);

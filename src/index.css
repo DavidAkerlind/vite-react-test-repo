@@ -149,6 +149,10 @@ footer {
 	max-height: fit-content;
 }
 
+.calendar button {
+	margin-top: 1rem;
+}
+
 .calendar-header {
 	padding: 0.4rem 1rem;
 	background-color: var(--components-background);
