@@ -444,7 +444,7 @@ footer img {
 	border-radius: 6px;
 	cursor: pointer;
 	padding: 0;
-	background-color: var(--button-background);
+	background-color: var(--components-active-bg);
 }
 
 .color-picker__input::-webkit-color-swatch {
