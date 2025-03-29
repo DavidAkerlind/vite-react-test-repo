@@ -149,7 +149,7 @@ footer {
 	max-height: fit-content;
 }
 
-.calendar button {
+.calendar > button {
 	margin-top: 1rem;
 }
 
