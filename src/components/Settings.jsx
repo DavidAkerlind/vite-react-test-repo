@@ -39,7 +39,11 @@ const Settings = ({
 				toggleMode={toggleDarkMode}
 			/>
 
-			<ThemeToggle text="Emilia Mode" toggleMode={togglePinkMode} />
+			<ThemeToggle
+				text="Emilia Mode"
+				isMode={isPinkMode}
+				toggleMode={togglePinkMode}
+			/>
 
 			<Button
 				onClick={clearSelectedDaysForMonth}
