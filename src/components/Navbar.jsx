@@ -3,6 +3,10 @@ import NavItem from './NavItem';
 function NavBar({ totalSelectedDays }) {
 	const navItems = [
 		{
+			text: 'Home',
+			link: '/',
+		},
+		{
 			text: 'Calendar',
 			link: '/Calendar',
 		},

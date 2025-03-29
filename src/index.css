@@ -492,10 +492,6 @@ footer img {
 
 /* Desktop-friendly adjustments Hover*/
 @media (min-width: 568px) {
-	.day:hover {
-		border-color: var(--components-active-bg);
-		cursor: pointer;
-	}
 	.color-picker__input:hover {
 		opacity: 0.8;
 	}

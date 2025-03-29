@@ -17,11 +17,15 @@ import {
 import './index.css';
 
 const App = () => {
+	const systemTheme = window.matchMedia(
+		'(prefers-color-scheme: dark)'
+	).matches;
+
 	const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
 	const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 	const [selectedDays, setSelectedDays] = useState({});
 	const [isDarkMode, setIsDarkMode] = useState(
-		localStorage.getItem('darkMode') === 'true'
+		localStorage.getItem('darkMode') === 'true' ? true : systemTheme
 	);
 	const [isPinkMode, setIsPinkMode] = useState(
 		localStorage.getItem('pinkMode') === 'true'
