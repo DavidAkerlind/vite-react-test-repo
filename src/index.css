@@ -5,6 +5,7 @@
 	--button-danger-text: #fa5e55;
 	--button-danger-active-bg: #d03533;
 	--white-text: #fff;
+	--dark-text: #0d1117;
 	--link-hover-color: #4493f8;
 }
 .dark-mode {
@@ -196,7 +197,6 @@ footer {
 .yearly-day.selected {
 	border-color: var(--components-stroke-dark);
 	background: var(--components-active-bg);
-	color: var(--white-text);
 }
 
 .yearly-view {
