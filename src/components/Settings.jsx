@@ -1,6 +1,7 @@
 import React from 'react';
 import ThemeToggle from './ThemeToggle';
 import Button from './Button.jsx';
+import ColorPicker from './ColorPicker.jsx';
 
 const Settings = ({
 	isDarkMode,
@@ -50,6 +51,11 @@ const Settings = ({
 				onClick={clearSelectedDays}
 				text="Clear all selected days"
 				type="danger"
+			/>
+			<ColorPicker
+				cssVarName="--components-active-bg"
+				label="Active Component Color"
+				defaultColor="#2ea043"
 			/>
 		</section>
 	);

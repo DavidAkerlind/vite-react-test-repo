@@ -416,6 +416,43 @@ footer img {
 	align-items: center;
 }
 
+.color-picker {
+	display: flex;
+	align-items: center;
+	background: var(--button-background);
+	padding: 0.5rem 0.8rem;
+	border-radius: 6px;
+	border: 1px solid var(--components-stroke-light);
+	gap: 1rem;
+}
+
+.color-picker__label {
+	font-size: 14px;
+	color: var(--text-color);
+	text-align: center;
+}
+
+.color-picker__icon {
+	padding-top: 0.3rem;
+	margin-left: 0.3rem;
+}
+
+.color-picker__input {
+	border: none;
+	width: 40px;
+	height: 40px;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 0;
+	background-color: var(--button-background);
+}
+
+.color-picker__input::-webkit-color-swatch {
+	border-radius: 6px;
+	border: none;
+	background-color: var(--components-background);
+}
+
 /* Desktop-friendly adjustments Hover*/
 @media (min-width: 568px) {
 	button.icon:hover {
