@@ -193,6 +193,10 @@ footer {
 	font-size: 1.2rem;
 }
 
+.day.filled {
+	cursor: pointer;
+}
+
 .day.selected,
 .yearly-day.selected {
 	border-color: var(--components-stroke-dark);

@@ -1,20 +1,22 @@
 import calendarIconGray from '../assets/calendar-gray.svg';
+import { Link } from 'react-router-dom';
 
 function Footer() {
 	const footerLinks = [
-		{ text: 'Settings', link: '#' },
+		{ text: 'Settings', link: '/settings' },
 		{ text: 'Contact', link: '#' },
-		{ text: 'Calendar', link: '#' },
+		{ text: 'Calendar', link: '/calendar' },
 		{ text: 'Status', link: '#' },
+		{ text: 'Yearly', link: '/yearly-view' },
 	];
 
 	return (
 		<footer className="footer">
 			<section className="footer-links">
 				{footerLinks.map((item, index) => (
-					<a key={index} href={item.link}>
+					<Link key={index} to={item.link} className="footer-link">
 						{item.text}
-					</a>
+					</Link>
 				))}
 			</section>
 			<section className="footer-logo">
