@@ -17,6 +17,7 @@ const ColorPicker = ({ cssVarName, label, defaultColor }) => {
 	// Återställ färgen till standard
 	const resetToDefault = () => {
 		setColor(defaultColor);
+		localStorage.setItem(cssVarName, defaultColor);
 	};
 
 	return (
