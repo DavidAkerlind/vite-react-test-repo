@@ -1,19 +1,15 @@
 import React from 'react';
 // import './ThemeToggle.css';
 
-const ThemeToggle = ({ text, isDarkMode, toggleMode }) => {
+const ThemeToggle = ({ text, isMode, toggleMode }) => {
 	return (
-		<div className="theme-toggle-section">
+		<form className="theme-toggle-section">
 			{text}
 			<label className="theme-toggle">
-				<input
-					type="checkbox"
-					checked={isDarkMode}
-					onChange={toggleMode}
-				/>
+				<input type="checkbox" checked={isMode} onChange={toggleMode} />
 				<span className="slider"></span>
 			</label>
-		</div>
+		</form>
 	);
 };
 

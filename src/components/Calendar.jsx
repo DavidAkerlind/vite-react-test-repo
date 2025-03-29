@@ -2,6 +2,8 @@ import React from 'react';
 import CalendarHeader from './CalendarHeader';
 import CalendarDays from './CalendarDays';
 import CalendarGrid from './CalendarGrid';
+import YearlyView from './YearlyView';
+import Button from './Button';
 
 const Calendar = ({
 	currentMonth,
@@ -10,6 +12,7 @@ const Calendar = ({
 	setCurrentYear,
 	selectedDays,
 	toggleDay,
+	clearSelectedDaysForMonth,
 }) => {
 	return (
 		<div className="calendar">
@@ -25,6 +28,10 @@ const Calendar = ({
 				currentYear={currentYear}
 				selectedDays={selectedDays}
 				toggleDay={toggleDay}
+			/>
+			<YearlyView
+				setCurrentMonth={setCurrentMonth}
+				selectedDays={selectedDays}
 			/>
 		</div>
 	);

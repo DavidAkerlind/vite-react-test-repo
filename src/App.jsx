@@ -128,6 +128,11 @@ const App = () => {
 								toggleDarkMode={toggleDarkMode}
 								isPinkMode={isPinkMode}
 								togglePinkMode={togglePinkMode}
+								clearSelectedDays={clearSelectedDays}
+								clearSelectedDaysForMonth={
+									clearSelectedDaysForMonth
+								}
+								currentMonth={currentMonth}
 							/>
 						}
 					/>

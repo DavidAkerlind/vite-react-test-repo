@@ -54,7 +54,9 @@
 .transparent {
 	opacity: 0;
 }
+
 h2 {
+	color: var(--text-color);
 	font-weight: 500;
 	font-size: 2rem;
 }
@@ -234,6 +236,7 @@ footer {
 
 .yearly-view-container {
 	display: flex;
+	justify-self: center;
 	flex-direction: column;
 	align-items: flex-start;
 	background-color: var(--darker-bg);
@@ -243,6 +246,7 @@ footer {
 	border-radius: 4px;
 	padding: 0.7em;
 	max-width: 95%;
+	margin-top: 1rem;
 }
 
 .month-header {
@@ -397,6 +401,16 @@ footer img {
 	border-radius: 30px;
 }
 
+.settings {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 2rem;
+	align-self: flex-start;
+	margin: 0.5rem;
+}
+
 /* Desktop-friendly adjustments Hover*/
 @media (min-width: 568px) {
 	button.icon:hover {
@@ -431,6 +445,7 @@ footer img {
 		border-radius: 6px;
 	}
 }
+
 /* Mobile-friendly adjustments */
 @media (max-width: 568px) {
 	.app {

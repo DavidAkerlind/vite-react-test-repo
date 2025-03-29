@@ -14,7 +14,7 @@ function Logo({ isDarkMode, isPinkMode }) {
 	}
 	return (
 		<a href="./index.html">
-			<img src={logoSrc} />
+			<img alt="Checkendar Logo" src={logoSrc} />
 			<h1>Checkendar</h1>
 		</a>
 	);
