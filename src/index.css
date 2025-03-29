@@ -455,6 +455,10 @@ footer img {
 
 /* Desktop-friendly adjustments Hover*/
 @media (min-width: 568px) {
+	.color-picker__input:hover {
+		opacity: 0.8;
+	}
+
 	button.icon:hover {
 		opacity: 0.8;
 	}
