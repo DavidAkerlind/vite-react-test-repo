@@ -262,15 +262,14 @@ footer {
 	max-width: 800px;
 	padding: 5px 0;
 	font-size: 0.8rem;
-	gap: 2.4rem;
+	gap: 1.7rem;
 }
 
-.month-label {
-	cursor: pointer;
+.month-header button {
+	padding: 0.2rem 0.3rem;
 }
 
-.month-label:active {
-	cursor: pointer;
+.month-header button:active {
 	opacity: 0.8;
 }
 
@@ -562,7 +561,7 @@ footer img {
 	}
 
 	.month-header {
-		gap: 3rem;
+		gap: 1.4rem;
 	}
 
 	.yearly-day {

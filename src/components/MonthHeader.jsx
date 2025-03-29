@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 // Lista med månadsförkortningar
 const monthAbbreviations = [
@@ -20,12 +21,11 @@ const MonthHeader = ({ setCurrentMonth }) => {
 	return (
 		<div className="month-header">
 			{monthAbbreviations.map((month, index) => (
-				<div
+				<Button
+					text={month}
 					onClick={() => setCurrentMonth(index)}
 					key={index}
-					className="month-label">
-					{month}
-				</div>
+					className="month-label"></Button>
 			))}
 		</div>
 	);
