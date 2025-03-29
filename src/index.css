@@ -116,7 +116,7 @@ button.icon {
 }
 
 footer {
-	position: absolute;
+	justify-self: flex-end;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -128,7 +128,6 @@ footer {
 	font-weight: 400;
 	margin-bottom: 1rem;
 	max-width: 95%;
-	bottom: 0;
 }
 
 .app {
@@ -403,6 +402,7 @@ footer img {
 
 .settings,
 .home-section {
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -414,7 +414,6 @@ footer img {
 
 .home-section {
 	align-items: center;
-	gap: 10rem;
 }
 
 /* Desktop-friendly adjustments Hover*/
