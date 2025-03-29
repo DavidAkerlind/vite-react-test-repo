@@ -107,7 +107,6 @@ button:active {
 }
 
 button.danger {
-	font-weight: 600;
 	color: var(--button-danger-text);
 }
 
@@ -166,8 +165,9 @@ footer {
 .day-name {
 	background-color: var(--components-background);
 	border-radius: 3px;
-	font-size: 0.6rem;
+	font-size: 0.9rem;
 	padding: 0.3rem;
+	letter-spacing: 0.3ch;
 	flex: 1;
 	border: 2px solid var(--components-stroke-dark);
 }
@@ -178,10 +178,6 @@ footer {
 	grid-template-columns: repeat(7, 1fr);
 	gap: 5px;
 	margin-top: 10px;
-}
-
-.day-name {
-	letter-spacing: 0.3ch;
 }
 
 .day {
@@ -541,6 +537,10 @@ footer img {
 	h2 {
 		font-size: 1.4em;
 	}
+
+	.nav__item {
+		font-size: 0.9rem;
+	}
 	.calendar {
 		width: 95%;
 		max-width: none;
@@ -552,7 +552,7 @@ footer img {
 	}
 
 	.day-name {
-		font-size: 0.5rem;
+		font-size: 0.7rem;
 		padding: 0.2rem;
 	}
 
