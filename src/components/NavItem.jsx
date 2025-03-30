@@ -6,7 +6,9 @@ function NavItem({ text, link, totalSelectedDays }) {
 	const isCalendar = link === '/Calendar'; // Check if it's the Calendar link
 
 	// Show the span only for Calendar if there are selected days
-	const showSpan = isCalendar && totalSelectedDays > 0;
+	// const showSpan = isCalendar && totalSelectedDays > 0;
+
+	const showSpan = false;
 
 	// Dynamic class handling
 	const className = `nav__item ${isActive ? 'active' : ''}`.trim();

@@ -13,6 +13,7 @@ import {
 	setLocalStorage,
 	getLocalStorage,
 	toggleTheme,
+	getStaticTrainingTypes,
 } from './components/Utils'; // Import the utils functions
 import './index.css';
 
@@ -56,6 +57,7 @@ const App = () => {
 			selectedDays,
 			day
 		);
+
 		setSelectedDays(updatedSelectedDays);
 	};
 
@@ -87,6 +89,8 @@ const App = () => {
 	const togglePinkModeHandler = () => {
 		setIsPinkMode((prevMode) => !prevMode);
 	};
+
+	const trainingTypes = getStaticTrainingTypes();
 
 	return (
 		<Router>

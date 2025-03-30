@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { isLightColor, getDaysInMonth } from './Utils';
+import { isLightColor, getDaysInMonth, getTrainingClass } from './Utils';
 
 const CalendarGrid = ({
 	currentMonth,
@@ -18,8 +18,12 @@ const CalendarGrid = ({
 		setUseDarkText(isLightColor(accentColor));
 	}, []);
 
-	const currentSelectedDays =
-		selectedDays[`${currentYear}-${currentMonth}`] || [];
+	// const currentSelectedDays =
+	// 	selectedDays[`${currentYear}-${currentMonth}`] || [];
+
+	const currentSelectedDays = Object.values(
+		selectedDays[`${currentYear}-${currentMonth}`] || {}
+	).flat(); // Plattar ut alla arrays med dagar till en enda lista
 
 	return (
 		<div className="calendar-grid">
@@ -29,6 +33,15 @@ const CalendarGrid = ({
 					className={`day ${day ? 'filled' : ''} ${
 						day && currentSelectedDays.includes(day)
 							? 'selected'
+							: ''
+					} ${
+						day
+							? getTrainingClass(
+									currentYear,
+									currentMonth,
+									selectedDays,
+									day
+							  )
 							: ''
 					}`}
 					style={{

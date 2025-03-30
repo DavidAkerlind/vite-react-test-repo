@@ -61,6 +61,16 @@ const Settings = ({
 				label="Active Component Color"
 				defaultColor="#2ea043"
 			/>
+			<ColorPicker
+				cssVarName="--training-1-bg"
+				label="training 1 Color"
+				defaultColor="#2ea043"
+			/>
+			<ColorPicker
+				cssVarName="--training-2-bg"
+				label="training 2 Color"
+				defaultColor="#2ea043"
+			/>
 		</section>
 	);
 };

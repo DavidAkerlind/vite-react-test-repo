@@ -1,5 +1,7 @@
 // Utils.jsx
 
+import { HiMiniDocumentCurrencyBangladeshi } from 'react-icons/hi2';
+
 // Function to check if a color is light or dark
 export const isLightColor = (hex) => {
 	if (!hex) return false; // Fallback
@@ -26,20 +28,34 @@ export const getDaysInMonth = (year, month) => {
 // Utils.jsx
 
 export const toggleDay = (currentYear, currentMonth, selectedDays, day) => {
-	const key = `${currentYear}-${currentMonth}`;
-	const monthSelections = selectedDays[key] || [];
+	const monthKey = `${currentYear}-${currentMonth}`;
 
-	if (monthSelections.includes(day)) {
-		return {
-			...selectedDays,
-			[key]: monthSelections.filter((d) => d !== day),
-		};
+	// Fråga användaren om träningsform
+	const selectedTraining = prompt('Välj träningsform (1 = Cardio, 2 = Gym)');
+	if (!selectedTraining || !['1', '2'].includes(selectedTraining))
+		return selectedDays;
+
+	// Hämta månadens data (eller skapa en tom struktur)
+	const monthSelections = selectedDays[monthKey] || {};
+
+	// Hämta träningsformen (eller skapa en tom lista)
+	const trainingDays = monthSelections[selectedTraining] || [];
+
+	// Kontrollera om dagen redan är vald och toggla den
+	if (trainingDays.includes(day)) {
+		// Ta bort dagen om den redan är vald
+		monthSelections[selectedTraining] = trainingDays.filter(
+			(d) => d !== day
+		);
 	} else {
-		return {
-			...selectedDays,
-			[key]: [...monthSelections, day],
-		};
+		// Lägg till dagen om den inte finns
+		monthSelections[selectedTraining] = [...trainingDays, day];
 	}
+
+	return {
+		...selectedDays,
+		[monthKey]: monthSelections, // Uppdatera månaden med den nya datan
+	};
 };
 
 export const clearSelectedDaysForMonth = (
@@ -89,4 +105,38 @@ export const getCurrentMonthName = (currentMonth) => {
 	];
 
 	return months[currentMonth];
+};
+
+export function getStaticTrainingTypes() {
+	let trainingTypes = [
+		{
+			id: 1,
+			type: 'Cardio',
+			color: '#D6F00F',
+		},
+		{
+			id: 2,
+			type: 'Gym',
+			color: '#F0200E',
+		},
+	];
+	return trainingTypes;
+}
+
+export const getTrainingClass = (
+	currentYear,
+	currentMonth,
+	selectedDays,
+	day
+) => {
+	if (!day) {
+		return ''; // Return an empty string if the day is invalid
+	}
+
+	const monthKey = `${currentYear}-${currentMonth}`; // Format: "2025-2"
+	const trainingTypes = Object.keys(selectedDays[monthKey] || {}).filter(
+		(type) => selectedDays[monthKey][type]?.includes(day) // Check if the day is selected for each training type
+	);
+
+	return trainingTypes.map((type) => `training-${type}`).join(' '); // Map the training types to classes
 };

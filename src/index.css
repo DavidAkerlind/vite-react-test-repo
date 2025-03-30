@@ -7,6 +7,8 @@
 	--white-text: #fff;
 	--dark-text: #0d1117;
 	--link-hover-color: #4493f8;
+	--training-1-bg: #2ea043;
+	--training-2-bg: #2ea043;
 }
 .dark-mode {
 	--header-background: #010409;
@@ -485,6 +487,16 @@ footer img {
 	margin: 0.2rem;
 }
 
+.day.training-1,
+.yearly-day.training-1 {
+	background-color: var(--training-1-bg);
+}
+
+.day.training-2,
+.yearly-day.training-2 {
+	background-color: var(--training-2-bg);
+}
+
 /* Desktop-friendly adjustments Hover*/
 @media (min-width: 568px) {
 	.color-picker__input:hover {
@@ -561,7 +573,7 @@ footer img {
 	}
 
 	.month-header {
-		gap: 1.4rem;
+		gap: 2.2rem;
 	}
 
 	.yearly-day {
