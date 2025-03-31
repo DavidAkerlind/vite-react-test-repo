@@ -119,12 +119,12 @@ button.icon {
 	background-color: transparent;
 }
 
-button.Gym {
-	background-color: var(--training-1-bg);
+.Gym {
+	background-color: var(--training-2-bg);
 }
 
-button.Cardio {
-	background-color: var(--training-2-bg);
+.Cardio {
+	background-color: var(--training-1-bg);
 }
 
 footer {
@@ -459,7 +459,7 @@ footer img {
 	border-radius: 6px;
 	cursor: pointer;
 	padding: 0;
-	background-color: var(--components-active-bg);
+	/* background-color: var(--components-active-bg); */
 }
 
 .color-picker__input::-webkit-color-swatch {

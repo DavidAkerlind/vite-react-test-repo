@@ -77,6 +77,7 @@ const Settings = ({
 					cssVarName={`--training-${type.id}-bg`}
 					label={`${type.type} Color`}
 					defaultColor={type.color}
+					type={type.type}
 					onColorChange={(newColor) =>
 						handleColorChange(type.id, newColor)
 					} // Uppdaterar färgen för träningskategori

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import { FaChevronRight } from 'react-icons/fa';
 
-const ColorPicker = ({ cssVarName, label, defaultColor }) => {
+const ColorPicker = ({ cssVarName, label, defaultColor, type }) => {
 	// Ladda sparad färg eller använd standardfärg
 	const [color, setColor] = useState(
 		localStorage.getItem(cssVarName) || defaultColor
@@ -32,7 +32,8 @@ const ColorPicker = ({ cssVarName, label, defaultColor }) => {
 					id={cssVarName}
 					value={color}
 					onChange={(e) => setColor(e.target.value)}
-					className="color-picker__input"
+					className={`color-picker__input ${type}`}
+					style={{ backgroundColor: `${cssVarName}` }}
 				/>
 			</div>
 			<Button
