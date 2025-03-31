@@ -42,6 +42,8 @@
 
 .pink-mode {
 	--components-active-bg: #ff69b4;
+	--training-1-bg: #d42a7f;
+	--training-2-bg: #ff69b4;
 }
 
 * {

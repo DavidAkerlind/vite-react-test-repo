@@ -7,19 +7,31 @@ const CalendarGrid = ({
 	selectedDays,
 	toggleDay,
 }) => {
-	const [useDarkText, setUseDarkText] = useState(false);
+	const [training1TextColor, setTraining1TextColor] = useState('');
+	const [training2TextColor, setTraining2TextColor] = useState('');
 
-	// Uppdatera textfärgen vid ändring av `--components-active-bg`
+	// Uppdatera textfärgen vid ändring av `--training-1-bg` och `--training-2-bg`
 	useEffect(() => {
-		const accentColor = getComputedStyle(document.documentElement)
-			.getPropertyValue('--components-active-bg')
+		const training1Color = getComputedStyle(document.documentElement)
+			.getPropertyValue('--training-1-bg')
 			.trim();
 
-		setUseDarkText(isLightColor(accentColor));
-	}, []);
+		const training2Color = getComputedStyle(document.documentElement)
+			.getPropertyValue('--training-2-bg')
+			.trim();
 
-	// const currentSelectedDays =
-	// 	selectedDays[`${currentYear}-${currentMonth}`] || [];
+		// Check if each color is light or dark
+		const isTraining1Light = isLightColor(training1Color);
+		const isTraining2Light = isLightColor(training2Color);
+
+		// Set text color for each training based on background color lightness
+		setTraining1TextColor(
+			isTraining1Light ? 'var(--dark-text)' : 'var(--white-text)'
+		);
+		setTraining2TextColor(
+			isTraining2Light ? 'var(--dark-text)' : 'var(--white-text)'
+		);
+	}, []);
 
 	const currentSelectedDays = Object.values(
 		selectedDays[`${currentYear}-${currentMonth}`] || {}
@@ -47,9 +59,15 @@ const CalendarGrid = ({
 					style={{
 						color:
 							day && currentSelectedDays.includes(day)
-								? useDarkText
-									? 'var(--dark-text)'
-									: 'var(--white-text)'
+								? // Apply text color based on the selected training
+								  getTrainingClass(
+										currentYear,
+										currentMonth,
+										selectedDays,
+										day
+								  ) === 'training-1'
+									? training1TextColor
+									: training2TextColor
 								: '',
 					}}
 					onClick={() => day && toggleDay(day)}>

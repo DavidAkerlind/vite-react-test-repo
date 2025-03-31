@@ -27,34 +27,51 @@ export const getDaysInMonth = (year, month) => {
 
 // Utils.jsx
 
-export const toggleDay = (currentYear, currentMonth, selectedDays, day) => {
+export const toggleDay = (
+	currentYear,
+	currentMonth,
+	selectedDays,
+	day,
+	selectedTraining
+) => {
 	const monthKey = `${currentYear}-${currentMonth}`;
 
-	// Fråga användaren om träningsform
-	const selectedTraining = prompt('Välj träningsform (1 = Cardio, 2 = Gym)');
-	if (!selectedTraining || !['1', '2'].includes(selectedTraining))
-		return selectedDays;
+	// Set the selected training type (1 or 2, default to 1 if not provided)
+	let selectedTrainingUse = selectedTraining || 1;
 
-	// Hämta månadens data (eller skapa en tom struktur)
+	// Get the month's data or initialize it if it doesn't exist
 	const monthSelections = selectedDays[monthKey] || {};
 
-	// Hämta träningsformen (eller skapa en tom lista)
-	const trainingDays = monthSelections[selectedTraining] || [];
+	// Get the training days for the selected training type, or an empty array if none
+	const trainingDays = monthSelections[selectedTrainingUse] || [];
 
-	// Kontrollera om dagen redan är vald och toggla den
+	// Ensure that the day only belongs to one training type at a time
+	// Remove the day from the other training type (if it exists in that list)
+	const otherTrainingType = selectedTrainingUse === 1 ? 2 : 1;
+	const otherTrainingDays = monthSelections[otherTrainingType] || [];
+
+	// Remove the day from the other training type (if it's there)
+	if (otherTrainingDays.includes(day)) {
+		monthSelections[otherTrainingType] = otherTrainingDays.filter(
+			(d) => d !== day
+		);
+	}
+
+	// Now, toggle the day for the selected training type
 	if (trainingDays.includes(day)) {
-		// Ta bort dagen om den redan är vald
-		monthSelections[selectedTraining] = trainingDays.filter(
+		// If the day is already selected, remove it from the current training type
+		monthSelections[selectedTrainingUse] = trainingDays.filter(
 			(d) => d !== day
 		);
 	} else {
-		// Lägg till dagen om den inte finns
-		monthSelections[selectedTraining] = [...trainingDays, day];
+		// If the day isn't selected, add it to the current training type
+		monthSelections[selectedTrainingUse] = [...trainingDays, day];
 	}
 
+	// Return the updated selectedDays with the new state
 	return {
 		...selectedDays,
-		[monthKey]: monthSelections, // Uppdatera månaden med den nya datan
+		[monthKey]: monthSelections,
 	};
 };
 
@@ -107,21 +124,20 @@ export const getCurrentMonthName = (currentMonth) => {
 	return months[currentMonth];
 };
 
-export function getStaticTrainingTypes() {
-	let trainingTypes = [
-		{
-			id: 1,
-			type: 'Cardio',
-			color: '#D6F00F',
-		},
-		{
-			id: 2,
-			type: 'Gym',
-			color: '#F0200E',
-		},
-	];
-	return trainingTypes;
-}
+export let defaultTrainingTypes = [
+	{
+		id: 1,
+		type: 'Cardio',
+		color: '#D6F00F',
+	},
+	{
+		id: 2,
+		type: 'Gym',
+		color: '#F0200E',
+	},
+];
+
+export default defaultTrainingTypes;
 
 export const getTrainingClass = (
 	currentYear,

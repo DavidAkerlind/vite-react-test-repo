@@ -38,12 +38,32 @@ const YearlyGrid = ({
 
 	const getTrainingClassForDay = (date) => {
 		const monthKey = `${date.getFullYear()}-${date.getMonth()}`;
-		return getTrainingClass(
+
+		let trainingClass = getTrainingClass(
 			date.getFullYear(), // currentYear
 			date.getMonth(), // currentMonth
 			selectedDays, // selectedDays object
 			date.getDate() // current day
 		);
+
+		return trainingClass;
+	};
+	const getTrainingNameForDay = (date) => {
+		const monthKey = `${date.getFullYear()}-${date.getMonth()}`;
+
+		let trainingClass = getTrainingClass(
+			date.getFullYear(), // currentYear
+			date.getMonth(), // currentMonth
+			selectedDays, // selectedDays object
+			date.getDate() // current day
+		);
+
+		if (trainingClass === 'training-1') {
+			trainingClass = 'Cardio';
+		} else if (trainingClass === 'training-2') {
+			trainingClass = 'Gym';
+		}
+		return trainingClass;
 	};
 
 	return (
@@ -68,7 +88,9 @@ const YearlyGrid = ({
 										}
 									);
 									setHoveredDay(`
-										${monthName} ${date.getDate()}${getOrdinalSuffix(date.getDate())}`);
+										${monthName} ${date.getDate()}${getOrdinalSuffix(
+										date.getDate()
+									)} ${getTrainingNameForDay(date)}`);
 
 									// Tooltip position correction
 									const tooltipWidth = 110;

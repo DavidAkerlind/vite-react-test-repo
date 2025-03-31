@@ -5,6 +5,7 @@ import CalendarGrid from './CalendarGrid';
 import YearlyView from './YearlyView';
 import Button from './Button';
 import { getCurrentMonthName } from './Utils';
+import Modal from './Modal';
 
 const Calendar = ({
 	currentMonth,
@@ -14,6 +15,10 @@ const Calendar = ({
 	selectedDays,
 	toggleDay,
 	clearSelectedDaysForMonth,
+	isModalOpen,
+	setModalOpen,
+	onSelectedTraining,
+	trainingTypes,
 }) => {
 	return (
 		<div className="calendar">
@@ -40,6 +45,12 @@ const Calendar = ({
 					currentMonth
 				)}`}
 				onClick={clearSelectedDaysForMonth}
+			/>
+			<Modal
+				isOpen={true}
+				onClose={() => setModalOpen(false)}
+				onSelectTraining={onSelectedTraining}
+				trainingTypes={trainingTypes}
 			/>
 		</div>
 	);

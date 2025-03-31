@@ -11,6 +11,8 @@ const Settings = ({
 	clearSelectedDays,
 	clearSelectedDaysForMonth,
 	currentMonth,
+	trainingTypes,
+	setTrainingTypes,
 }) => {
 	const months = [
 		'January',

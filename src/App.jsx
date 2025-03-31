@@ -13,7 +13,7 @@ import {
 	setLocalStorage,
 	getLocalStorage,
 	toggleTheme,
-	getStaticTrainingTypes,
+	defaultTrainingTypes,
 } from './components/Utils'; // Import the utils functions
 import './index.css';
 
@@ -31,6 +31,14 @@ const App = () => {
 	const [isPinkMode, setIsPinkMode] = useState(
 		localStorage.getItem('pinkMode') === 'true'
 	);
+	const [isModalOpen, setModalOpen] = useState(false);
+	const [selectedTraining, setSelectedTraining] = useState(null);
+
+	const handelSelectTraining = (trainingId) => {
+		setSelectedTraining(trainingId);
+		setModalOpen(false);
+	};
+	const [trainingTypes, setTrainingTypes] = useState(defaultTrainingTypes);
 
 	useEffect(() => {
 		toggleTheme(isDarkMode, isPinkMode); // Set theme on load
@@ -55,7 +63,8 @@ const App = () => {
 			currentYear,
 			currentMonth,
 			selectedDays,
-			day
+			day,
+			selectedTraining
 		);
 
 		setSelectedDays(updatedSelectedDays);
@@ -90,8 +99,6 @@ const App = () => {
 		setIsPinkMode((prevMode) => !prevMode);
 	};
 
-	const trainingTypes = getStaticTrainingTypes();
-
 	return (
 		<Router>
 			<div className="app">
@@ -116,6 +123,10 @@ const App = () => {
 								clearSelectedDaysForMonth={
 									clearSelectedDaysForMonthHandler
 								}
+								isModalOpen={isModalOpen}
+								setModalOpen={setModalOpen}
+								onSelectedTraining={handelSelectTraining}
+								trainingTypes={trainingTypes}
 							/>
 						}
 					/>
@@ -141,6 +152,8 @@ const App = () => {
 									clearSelectedDaysForMonthHandler
 								}
 								currentMonth={currentMonth}
+								trainingTypes={trainingTypes}
+								setTrainingTypes={setTrainingTypes}
 							/>
 						}
 					/>
