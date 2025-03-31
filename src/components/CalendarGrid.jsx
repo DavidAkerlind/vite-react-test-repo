@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { isLightColor, getDaysInMonth, getTrainingClass } from './Utils';
+import {
+	getDaysInMonth,
+	getTrainingClass,
+	getTextColorForBackground,
+} from './Utils';
 
 const CalendarGrid = ({
 	currentMonth,
@@ -20,17 +24,9 @@ const CalendarGrid = ({
 			.getPropertyValue('--training-2-bg')
 			.trim();
 
-		// Check if each color is light or dark
-		const isTraining1Light = isLightColor(training1Color);
-		const isTraining2Light = isLightColor(training2Color);
-
-		// Set text color for each training based on background color lightness
-		setTraining1TextColor(
-			isTraining1Light ? 'var(--dark-text)' : 'var(--white-text)'
-		);
-		setTraining2TextColor(
-			isTraining2Light ? 'var(--dark-text)' : 'var(--white-text)'
-		);
+		// Använd den återanvändbara funktionen för att sätta textfärger
+		setTraining1TextColor(getTextColorForBackground(training1Color));
+		setTraining2TextColor(getTextColorForBackground(training2Color));
 	}, []);
 
 	const currentSelectedDays = Object.values(

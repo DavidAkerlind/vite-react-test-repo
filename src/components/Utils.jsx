@@ -156,3 +156,43 @@ export const getTrainingClass = (
 
 	return trainingTypes.map((type) => `training-${type}`).join(' '); // Map the training types to classes
 };
+
+// export const isLightColor = (color) => {
+// 	// Vi använder en enkel metod för att avgöra om en färg är ljus eller mörk
+// 	// Om färgen är en hex-kod (t.ex. #ffffff eller rgb())
+// 	// Du kan även lägga till stöd för andra färgformat här
+
+// 	// Om det är en hex-kod, omvandla till RGB
+// 	let r, g, b;
+// 	if (color.startsWith('#')) {
+// 		// Om hex-färgen är i kort format #RGB
+// 		if (color.length === 4) {
+// 			r = parseInt(color[1] + color[1], 16);
+// 			g = parseInt(color[2] + color[2], 16);
+// 			b = parseInt(color[3] + color[3], 16);
+// 		} else {
+// 			r = parseInt(color[1] + color[2], 16);
+// 			g = parseInt(color[3] + color[4], 16);
+// 			b = parseInt(color[5] + color[6], 16);
+// 		}
+// 	} else if (color.startsWith('rgb')) {
+// 		// Om det är en RGB-färg
+// 		const rgbValues = color
+// 			.match(/^rgb\((\d+), (\d+), (\d+)\)$/)
+// 			.slice(1)
+// 			.map((val) => parseInt(val));
+// 		[r, g, b] = rgbValues;
+// 	}
+
+// 	// Beräkna luminansen för att avgöra om färgen är ljus eller mörk
+// 	const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+// 	// Om luminansen är större än 128 så är färgen ljus
+// 	return luminance > 0.5;
+// };
+
+export const getTextColorForBackground = (bgColor) => {
+	const isLight = isLightColor(bgColor);
+	// Om bakgrundsfärgen är ljus, sätt texten till mörk, annars sätt texten till vit
+	return isLight ? 'var(--dark-text)' : 'var(--white-text)';
+};

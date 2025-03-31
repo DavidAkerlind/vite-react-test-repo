@@ -38,7 +38,17 @@ const App = () => {
 		setSelectedTraining(trainingId);
 		setModalOpen(false);
 	};
-	const [trainingTypes, setTrainingTypes] = useState(defaultTrainingTypes);
+	const [trainingTypes, setTrainingTypes] = useState([
+		{ id: 1, type: 'Cardio', color: 'var(--training-1-bg)' },
+		{ id: 2, type: 'Gym', color: 'var(--training-2-bg)' },
+	]);
+
+	const handelSetTrainingTypes = (id, newColor) => {
+		const updatedTrainingTypes = trainingTypes.map((type) =>
+			type.id === id ? { ...type, color: newColor } : type
+		);
+		setTrainingTypes(updatedTrainingTypes);
+	};
 
 	useEffect(() => {
 		toggleTheme(isDarkMode, isPinkMode); // Set theme on load
@@ -153,7 +163,7 @@ const App = () => {
 								}
 								currentMonth={currentMonth}
 								trainingTypes={trainingTypes}
-								setTrainingTypes={setTrainingTypes}
+								setTrainingTypes={handelSetTrainingTypes}
 							/>
 						}
 					/>

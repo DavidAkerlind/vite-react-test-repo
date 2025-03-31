@@ -30,6 +30,13 @@ const Settings = ({
 	];
 	let buttonText = `Clear selected days in ${months[currentMonth]}`;
 
+	const handleColorChange = (id, newColor) => {
+		const updatedTrainingTypes = trainingTypes.map((type) =>
+			type.id === id ? { ...type, color: newColor } : type
+		);
+		setTrainingTypes(updatedTrainingTypes);
+	};
+
 	return (
 		<section className="settings">
 			<h2>Settings</h2>
@@ -63,16 +70,18 @@ const Settings = ({
 				label="Active Component Color"
 				defaultColor="#2ea043"
 			/>
-			<ColorPicker
-				cssVarName="--training-1-bg"
-				label="training 1 Color"
-				defaultColor="#2ea043"
-			/>
-			<ColorPicker
-				cssVarName="--training-2-bg"
-				label="training 2 Color"
-				defaultColor="#2ea043"
-			/>
+			{/* Color pickers for training types */}
+			{trainingTypes.map((type) => (
+				<ColorPicker
+					key={type.id}
+					cssVarName={`--training-${type.id}-bg`}
+					label={`${type.type} Color`}
+					defaultColor={type.color}
+					onColorChange={(newColor) =>
+						handleColorChange(type.id, newColor)
+					} // Uppdaterar färgen för träningskategori
+				/>
+			))}
 		</section>
 	);
 };

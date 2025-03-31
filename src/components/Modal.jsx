@@ -1,8 +1,27 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import {
+	getDaysInMonth,
+	getTrainingClass,
+	getTextColorForBackground,
+} from './Utils';
 const Modal = ({ isOpen, onClose, onSelectTraining, trainingTypes }) => {
 	if (!isOpen) return null;
 
+	const [training1TextColor, setTraining1TextColor] = useState('');
+	const [training2TextColor, setTraining2TextColor] = useState('');
+	useEffect(() => {
+		const training1Color = getComputedStyle(document.documentElement)
+			.getPropertyValue('--training-1-bg')
+			.trim();
+
+		const training2Color = getComputedStyle(document.documentElement)
+			.getPropertyValue('--training-2-bg')
+			.trim();
+
+		// Använd den återanvändbara funktionen för att sätta textfärger
+		setTraining1TextColor(getTextColorForBackground(training1Color));
+		setTraining2TextColor(getTextColorForBackground(training2Color));
+	}, []);
 	// Close modal on Escape key press
 	useEffect(() => {
 		const handleKeyDown = (event) => {
@@ -28,21 +47,26 @@ const Modal = ({ isOpen, onClose, onSelectTraining, trainingTypes }) => {
 			aria-hidden={!isOpen}
 			role="dialog">
 			<div className="modal-content">
-				<h2>Välj träningsform</h2>
+				<h2>Choose training type</h2>
 				<div className="modal-buttons">
 					{trainingTypes.map((training) => (
 						<button
 							key={training.id}
+							style={{
+								color: `${
+									training.color === 'training-1'
+										? training1TextColor
+										: training2TextColor
+								}`,
+								backgroundColor: `${training.color}`,
+							}}
 							className="training-button"
-							style={{ backgroundColor: training.color }}
+							type={training.type}
 							onClick={() => onSelectTraining(training.id)}>
 							{training.type}
 						</button>
 					))}
 				</div>
-				<button className="close-button" onClick={onClose}>
-					Avbryt
-				</button>
 			</div>
 		</div>
 	);

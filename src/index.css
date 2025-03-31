@@ -119,6 +119,14 @@ button.icon {
 	background-color: transparent;
 }
 
+button.Gym {
+	background-color: var(--training-1-bg);
+}
+
+button.Cardio {
+	background-color: var(--training-2-bg);
+}
+
 footer {
 	justify-self: flex-end;
 	display: flex;
